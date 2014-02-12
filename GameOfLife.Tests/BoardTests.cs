@@ -6,11 +6,18 @@ namespace GameOfLife.Tests
     [TestFixture]
     public class BoardTests
     {
+        private Board board;
+
+        [SetUp]
+        public void SetUp()
+        {
+            board = new Board(4, 8);
+        }
+
         [Test]
         public void TestBoardCreation()
         {
-            var board = new Board(2, 2);
-            Assert.That(board.Cells.Count, Is.EqualTo(4));
+            Assert.That(board.Cells.Count, Is.EqualTo(32));
         }
 
         [Test]
@@ -23,7 +30,6 @@ namespace GameOfLife.Tests
         [Test]
         public void TestGetCell()
         {
-            var board = new Board(2, 2);
             Assert.That(board.GetCellAt(1, 1),
                 Is.EqualTo(new Cell { X = 1, Y = 1, IsAlive = false }));
         }
@@ -31,8 +37,22 @@ namespace GameOfLife.Tests
         [Test]
         public void TestGetCellThatDoesNotExist()
         {
-            var board = new Board(2, 2);
-            Assert.That(board.GetCellAt(4, 4), Is.EqualTo(null));
+            Assert.That(board.GetCellAt(4, 9), Is.EqualTo(null));
+        }
+
+        [Test]
+        public void TestGiveLifeToCell()
+        {
+            board.SetLifeFor(2, 2, true);
+            Assert.That(board.GetCellAt(2, 2).IsAlive, Is.EqualTo(true));
+        }
+
+        [Test]
+        public void TestTakeLifeFromCell()
+        {
+            board.SetLifeFor(2, 2, true);
+            board.SetLifeFor(2, 2, false);
+            Assert.That(board.GetCellAt(2, 2).IsAlive, Is.EqualTo(false));
         }
     }
 }

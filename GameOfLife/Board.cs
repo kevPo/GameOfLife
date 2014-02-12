@@ -23,15 +23,21 @@ namespace GameOfLife
             for (var row = 0; row < rows; row++)
             {
                 for (var column = 0; column < columns; column++)
-                {
                     Cells.Add(new Cell { IsAlive = false, X = column, Y = row });
-                }
             }
         }
 
         public Cell GetCellAt(Int32 x, Int32 y)
         {
             return Cells.FirstOrDefault(c => c.X == x && c.Y == y);
+        }
+
+        public void SetLifeFor(Int32 x, Int32 y, Boolean alive)
+        {
+            var cell = Cells.FirstOrDefault(c => c.X == x && c.Y == y);
+            
+            if (cell != null)
+                cell.IsAlive = alive;
         }
 
     }
