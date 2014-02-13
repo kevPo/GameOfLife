@@ -16,25 +16,24 @@ namespace GameOfLife.Tests
         {
             factory = new BoardFactory(new RowTranslator());
             dimensions = "4 8";
-            var initialLayout = "........\n" + 
-                                "....*...\n" +
-                                "...**...\n" +
-                                "........\n";
+            var initialLayout = new []{ "........", 
+                                        "....*...",
+                                        "...**...",
+                                        "........" };
             board = factory.GetBoard(dimensions, initialLayout);
-
         }
 
         [Test]
         public void TestBoardCreationWithEmptyDimensions()
         {
-            Exception exception = Assert.Throws<InvalidOperationException>(new TestDelegate(() => factory.GetBoard(String.Empty, String.Empty)));
+            Exception exception = Assert.Throws<InvalidOperationException>(new TestDelegate(() => factory.GetBoard(String.Empty, Enumerable.Empty<String>())));
             Assert.That(exception.Message, Is.EqualTo("Dimensions were not given in an acceptable format 'rows columns'"));
         }
 
         [Test]
         public void TestBoardCreationWithEmptyLayout()
         {
-            Exception exception = Assert.Throws<InvalidOperationException>(new TestDelegate(() => factory.GetBoard(dimensions, String.Empty)));
+            Exception exception = Assert.Throws<InvalidOperationException>(new TestDelegate(() => factory.GetBoard(dimensions, Enumerable.Empty<String>())));
             Assert.That(exception.Message, Is.EqualTo("Layout was undefined"));
         }
 

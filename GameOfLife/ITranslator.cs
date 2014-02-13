@@ -3,8 +3,8 @@ using System.Collections.Generic;
 
 namespace GameOfLife
 {
-    public interface ITranslator
+    public interface ITranslator<T>
     {
-        List<Cell> Translate(Int32 rowNumber, String rowData);
+        T Translate(String data);
     }
 }

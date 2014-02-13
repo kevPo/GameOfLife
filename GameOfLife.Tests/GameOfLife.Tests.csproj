@@ -73,6 +73,7 @@
     <Compile Include="BoardTests.cs" />
     <Compile Include="CellIteratorTests.cs" />
     <Compile Include="GameOfLifeTests.cs" />
+    <Compile Include="InputTranslatorTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RowTranslatorTests.cs" />
   </ItemGroup>

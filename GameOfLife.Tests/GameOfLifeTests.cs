@@ -6,6 +6,9 @@ namespace GameOfLife.Tests
     [TestFixture]
     public class GameOfLifeTests
     {
-        
+        [Test]
+        public void TestThatBoardIsCreated()
+        {
+        }
     }
 }

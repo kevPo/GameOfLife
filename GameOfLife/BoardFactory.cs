@@ -6,14 +6,14 @@ namespace GameOfLife
 {
     public class BoardFactory
     {
-        private ITranslator rowTranslator;
+        private ITranslator<List<Cell>> rowTranslator;
 
-        public BoardFactory(ITranslator translator)
+        public BoardFactory(ITranslator<List<Cell>> translator)
         {
             rowTranslator = translator;
         }
 
-        public Board GetBoard(String dimensions, String initialLayout)
+        public Board GetBoard(String dimensions, IEnumerable<String> dataInRows)
         {
             var rowsAndColumns = dimensions.Split(' ');
 
@@ -22,7 +22,7 @@ namespace GameOfLife
                 var rows = Int32.Parse(rowsAndColumns[0]);
                 var columns = Int32.Parse(rowsAndColumns[1]);
 
-                var cells = BuildCells(initialLayout);
+                var cells = BuildCells(dataInRows);
 
                 return new Board(rows, columns, cells);
             }
@@ -36,16 +36,23 @@ namespace GameOfLife
             }
         }
 
-        private IEnumerable<Cell> BuildCells(String initialLayout)
+        private IEnumerable<Cell> BuildCells(IEnumerable<String> dataInRows)
         {
-            if (String.IsNullOrEmpty(initialLayout))
+            if (dataInRows == null || !dataInRows.Any())
                 throw new InvalidOperationException("Layout was undefined");
 
+            var rows = dataInRows.ToList();
             var cells = new List<Cell>();
-            var rows = initialLayout.Split('\n');
-            
+
             for (var index = 0; index < rows.Count(); index++)
-                cells.AddRange(rowTranslator.Translate(index, rows[index]));
+            {
+                var cellsToAdd = rowTranslator.Translate(rows[index]);
+
+                foreach (var cell in cellsToAdd)
+                    cell.Y = index;
+
+                cells.AddRange(cellsToAdd);
+            }
 
             return cells;
         }
