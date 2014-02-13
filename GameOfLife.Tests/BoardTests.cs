@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using NUnit.Framework;
 
 namespace GameOfLife.Tests
@@ -11,7 +12,7 @@ namespace GameOfLife.Tests
         [SetUp]
         public void SetUp()
         {
-            board = new Board(4, 8);
+            board = new Board(4, 8, Enumerable.Empty<Cell>());
         }
 
         [Test]
@@ -23,7 +24,7 @@ namespace GameOfLife.Tests
         [Test]
         public void TestBoardCreationWithNegatives()
         {
-            Exception exception = Assert.Throws<InvalidOperationException>(new TestDelegate(() => new Board(-1, -1)));
+            Exception exception = Assert.Throws<InvalidOperationException>(new TestDelegate(() => new Board(-1, -1, Enumerable.Empty<Cell>())));
             Assert.That(exception.Message, Is.EqualTo("Negative values are not acceptable"));
         }
 

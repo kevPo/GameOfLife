@@ -8,8 +8,8 @@ namespace GameOfLife
     {
         private List<String> rows;
         private Int32 current;
-        
-        public RowIterator(IEnumerable<String> rowsToTranslate)
+
+        public void Initialize(IEnumerable<String> rowsToTranslate)
         {
             if (rowsToTranslate == null || !rowsToTranslate.Any())
                 throw new IteratorException("Input list cannot be empty or null");

@@ -13,7 +13,7 @@ namespace GameOfLife.Tests
         [SetUp]
         public void SetUp()
         {
-            factory = new BoardFactory();
+            factory = new BoardFactory(new RowIterator());
             dimensions = "4 8";
             initialLayout = "........\n" + 
                             "....*...\n" +
@@ -28,11 +28,5 @@ namespace GameOfLife.Tests
             Assert.That(exception.Message, Is.EqualTo("Dimensions were not given in an acceptable format 'rows columns'"));
         }
 
-        //[Test]
-        //public void TestBoardCreationWithEmptyLayout()
-        //{
-        //    Exception exception = Assert.Throws<InvalidOperationException>(new TestDelegate(() => factory.GetBoard(dimensions, String.Empty)));
-        //    Assert.That(exception.Message, Is.EqualTo("Layout was not given in an acceptable format 'rows columns'"));
-        //}
     }
 }

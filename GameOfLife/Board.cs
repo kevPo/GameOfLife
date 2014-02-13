@@ -8,9 +8,9 @@ namespace GameOfLife
     {
         public List<Cell> Cells { get; private set; }
 
-        public Board(Int32 rows, Int32 columns)
+        public Board(Int32 rows, Int32 columns, IEnumerable<Cell> cells)
         {
-            Cells = new List<Cell>();
+            Cells = cells.ToList();
 
             if (rows < 0 || columns < 0)
                 throw new InvalidOperationException("Negative values are not acceptable");

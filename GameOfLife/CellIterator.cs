@@ -17,6 +17,11 @@ namespace GameOfLife
             this.homeCell = homeCell;
         }
 
+        public void Initialize(IEnumerable<Cell> cells)
+        {
+            this.cells = cells;
+        }
+
         public void First()
         {
             throw new NotImplementedException();
