@@ -42,7 +42,8 @@
     <Compile Include="Board.cs" />
     <Compile Include="BoardFactory.cs" />
     <Compile Include="IteratorException.cs" />
-    <Compile Include="RowIterator.cs" />
+    <Compile Include="ITranslator.cs" />
+    <Compile Include="RowTranslator.cs" />
     <Compile Include="Cell.cs" />
     <Compile Include="CellIterator.cs" />
     <Compile Include="GameOfLife.cs" />

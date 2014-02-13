@@ -72,9 +72,9 @@
     <Compile Include="BoardFactoryTests.cs" />
     <Compile Include="BoardTests.cs" />
     <Compile Include="CellIteratorTests.cs" />
-    <Compile Include="RowIteratorTests.cs" />
     <Compile Include="GameOfLifeTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RowTranslatorTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

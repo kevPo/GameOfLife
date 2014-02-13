@@ -1,15 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace GameOfLife
 {
     public class BoardFactory
     {
-        private IIterator<String> rowIterator;
+        private ITranslator rowTranslator;
 
-        public BoardFactory(IIterator<String> rowIterator)
+        public BoardFactory(ITranslator translator)
         {
-            this.rowIterator = rowIterator;
+            rowTranslator = translator;
         }
 
         public Board GetBoard(String dimensions, String initialLayout)
@@ -21,9 +22,13 @@ namespace GameOfLife
                 var rows = Int32.Parse(rowsAndColumns[0]);
                 var columns = Int32.Parse(rowsAndColumns[1]);
 
-                var cells = BuildCells();
-    
+                var cells = BuildCells(initialLayout);
+
                 return new Board(rows, columns, cells);
+            }
+            catch (InvalidOperationException exception)
+            {
+                throw exception;
             }
             catch (Exception exception)
             {
@@ -31,9 +36,18 @@ namespace GameOfLife
             }
         }
 
-        private IEnumerable<Cell> BuildCells()
+        private IEnumerable<Cell> BuildCells(String initialLayout)
         {
-            throw new NotImplementedException();
+            if (String.IsNullOrEmpty(initialLayout))
+                throw new InvalidOperationException("Layout was undefined");
+
+            var cells = new List<Cell>();
+            var rows = initialLayout.Split('\n');
+            
+            for (var index = 0; index < rows.Count(); index++)
+                cells.AddRange(rowTranslator.Translate(index, rows[index]));
+
+            return cells;
         }
     }
 }

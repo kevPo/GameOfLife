@@ -12,13 +12,25 @@ namespace GameOfLife.Tests
         [SetUp]
         public void SetUp()
         {
-            board = new Board(4, 8, Enumerable.Empty<Cell>());
+            var cells = new[] { 
+                new Cell { X =  0, Y = 0, IsAlive = false },
+                new Cell { X =  0, Y = 1, IsAlive = false },
+                new Cell { X =  0, Y = 2, IsAlive = false },
+                new Cell { X =  1, Y = 0, IsAlive = false },
+                new Cell { X =  1, Y = 1, IsAlive = false },
+                new Cell { X =  1, Y = 2, IsAlive = false },
+                new Cell { X =  2, Y = 0, IsAlive = false },
+                new Cell { X =  2, Y = 1, IsAlive = false },
+                new Cell { X =  2, Y = 2, IsAlive = false },
+            };
+            board = new Board(3, 3, cells);
         }
 
         [Test]
         public void TestBoardCreation()
         {
-            Assert.That(board.Cells.Count, Is.EqualTo(32));
+            var emptyBoard = new Board(0, 0, Enumerable.Empty<Cell>());
+            Assert.That(emptyBoard.Cells.Count, Is.EqualTo(0));
         }
 
         [Test]
