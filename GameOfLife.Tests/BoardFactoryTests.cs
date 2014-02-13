@@ -10,7 +10,6 @@ namespace GameOfLife.Tests
         String dimensions;
         String initialLayout;
 
-
         [SetUp]
         public void SetUp()
         {
@@ -28,5 +27,12 @@ namespace GameOfLife.Tests
             Exception exception = Assert.Throws<InvalidOperationException>(new TestDelegate(() => factory.GetBoard(String.Empty, String.Empty)));
             Assert.That(exception.Message, Is.EqualTo("Dimensions were not given in an acceptable format 'rows columns'"));
         }
+
+        //[Test]
+        //public void TestBoardCreationWithEmptyLayout()
+        //{
+        //    Exception exception = Assert.Throws<InvalidOperationException>(new TestDelegate(() => factory.GetBoard(dimensions, String.Empty)));
+        //    Assert.That(exception.Message, Is.EqualTo("Layout was not given in an acceptable format 'rows columns'"));
+        //}
     }
 }

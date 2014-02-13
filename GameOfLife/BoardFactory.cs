@@ -12,6 +12,8 @@ namespace GameOfLife
             {
                 var rows = Int32.Parse(rowsAndColumns[0]);
                 var columns = Int32.Parse(rowsAndColumns[1]);
+
+    
                 return new Board(rows, columns);
             }
             catch (Exception exception)
