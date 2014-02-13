@@ -69,7 +69,9 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="BoardFactoryTests.cs" />
     <Compile Include="BoardTests.cs" />
+    <Compile Include="CellIteratorTests.cs" />
     <Compile Include="GameOfLifeTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
