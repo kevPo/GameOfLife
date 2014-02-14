@@ -25,7 +25,11 @@ namespace GameOfLife.Tests
         [Test]
         public void TestThatBoardIsCreated()
         {
-            
+            var expected = "........\n" +
+                           "....*...\n" +
+                           "...**...\n" +
+                           "........\n";
+            Assert.That(game.ViewGameBoard(), Is.EqualTo(expected));
         }
     }
 }

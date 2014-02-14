@@ -67,5 +67,14 @@ namespace GameOfLife.Tests
             board.SetLifeFor(2, 2, false);
             Assert.That(board.GetCellAt(2, 2).IsAlive, Is.EqualTo(false));
         }
+
+        [Test]
+        public void TestToString()
+        {
+            var expected = "...\n" +
+                           "...\n" +
+                           "...\n";
+            Assert.That(board.ToString(), Is.EqualTo(expected));
+        }
     }
 }

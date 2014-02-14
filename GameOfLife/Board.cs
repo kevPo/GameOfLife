@@ -33,5 +33,18 @@ namespace GameOfLife
             if (cell != null)
                 cell.IsAlive = alive;
         }
+
+        public override string ToString()
+        {
+            var result = String.Empty;
+            for (var y = 0; y < rows; y++)
+            {
+                for (var x = 0; x < columns; x++)
+                    result += Cells.FirstOrDefault(c => c.Y == y && c.X == x).Value;
+
+                result += '\n';
+            }
+            return result;
+        }
     }
 }

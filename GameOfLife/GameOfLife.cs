@@ -15,7 +15,7 @@ namespace GameOfLife
 
         public String ViewGameBoard()
         {
-            return String.Empty;
+            return board.ToString();
         }
 
     }
