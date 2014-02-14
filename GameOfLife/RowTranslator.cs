@@ -6,8 +6,14 @@ namespace GameOfLife
 {
     public class RowTranslator : ITranslator<List<Cell>>
     {
-        private const Char ALIVE = '*';
-        private const Char DEAD = '.';
+        private Char alive;
+        private Char dead; 
+
+        public RowTranslator(Char alive, Char dead)
+        {
+            this.alive = alive;
+            this.dead = dead;
+        }
 
         public List<Cell> Translate(String rowData)
         {
@@ -15,7 +21,7 @@ namespace GameOfLife
             var cells = new List<Cell>();
 
             for (var i = 0; i < rawCells.Count(); i++)
-                cells.Add(new Cell { X = i, Value = rawCells[i], IsAlive = rawCells[i] == '*' });
+                cells.Add(new Cell { X = i, Value = rawCells[i], IsAlive = rawCells[i] == alive });
 
             return cells;
         }

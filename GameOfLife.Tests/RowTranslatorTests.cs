@@ -12,7 +12,7 @@ namespace GameOfLife.Tests
         [SetUp]
         public void SetUp()
         {
-            translator = new RowTranslator();
+            translator = new RowTranslator('*', '.');
         }
 
         [Test]

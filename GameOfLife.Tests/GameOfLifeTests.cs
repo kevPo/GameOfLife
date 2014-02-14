@@ -17,8 +17,14 @@ namespace GameOfLife.Tests
                           "...**...\n" +
                           "........";
             var inputTranslator = new InputTranslator();
-            var boardFactory = new BoardFactory(new RowTranslator());
-            game = new GameOfLife(rawData, inputTranslator, boardFactory);
+            var criteria = new GameCriteria { 
+                CellIterator = new CellIterator(),
+                GameRules = new DefaultGameRules(),
+                AliveValue = '*',
+                DeadValue = '.'
+            };
+            var boardFactory = new BoardFactory(new RowTranslator(criteria.AliveValue, criteria.DeadValue));
+            game = new GameOfLife(rawData, criteria, inputTranslator, boardFactory);
         }
 
 
@@ -30,6 +36,16 @@ namespace GameOfLife.Tests
                            "...**...\n" +
                            "........\n";
             Assert.That(game.ViewGameBoard(), Is.EqualTo(expected));
+        }
+
+        [Test]
+        public void TestBlockGeneration()
+        {
+            var nextGeneration = "........\n" +
+                                 "...**...\n" +
+                                 "...**...\n" +
+                                 "........\n";
+            Assert.That(game.NextGeneration(), Is.EqualTo(nextGeneration));
         }
     }
 }

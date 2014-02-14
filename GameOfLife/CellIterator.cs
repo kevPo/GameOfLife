@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GameOfLife
 {
@@ -10,12 +8,8 @@ namespace GameOfLife
     {
         private IEnumerable<Cell> cells;
         private Cell current;
-        private Cell homeCell;
-
-        public CellIterator(IEnumerable<Cell> cells)
-        {
-            this.cells = cells;
-        }
+        private Int32 currentIndex;
+        private Cell home;
 
         public void Initialize(IEnumerable<Cell> cells)
         {
@@ -24,7 +18,8 @@ namespace GameOfLife
 
         public void First()
         {
-            current = FirstCellFor(homeCell);
+            current = FirstCellFor(home);
+            currentIndex = 0;
         }
 
         private Cell FirstCellFor(Cell homeCell)
@@ -34,29 +29,27 @@ namespace GameOfLife
 
         public void Next()
         {
-            if (current == null)
-                return;
-            else if (HomeCellIsNext())
-                current = cells.FirstOrDefault(c => c.Y == homeCell.Y && c.X == homeCell.X + 1);
-            else if (CurrentlyAtEndColumn())
-                current = cells.FirstOrDefault(c => c.Y == current.Y + 1 && c.X == homeCell.X - 1);
-            else
-                current = cells.FirstOrDefault(c => c.Y == current.Y && c.X == current.X + 1);
-        }
+            if (currentIndex == 0)
+                current = cells.FirstOrDefault(c => c.Y == home.Y - 1 && c.X == home.X);
+            else if (currentIndex == 1)
+                current = cells.FirstOrDefault(c => c.Y == home.Y - 1 && c.X == home.X + 1);
+            else if (currentIndex == 2)
+                current = cells.FirstOrDefault(c => c.Y == home.Y && c.X == home.X - 1);
+            else if (currentIndex == 3)
+                current = cells.FirstOrDefault(c => c.Y == home.Y && c.X == home.X + 1);
+            else if (currentIndex == 4)
+                current = cells.FirstOrDefault(c => c.Y == home.Y + 1 && c.X == home.X - 1);
+            else if (currentIndex == 5)
+                current = cells.FirstOrDefault(c => c.Y == home.Y + 1 && c.X == home.X);
+            else if (currentIndex == 6)
+                current = cells.FirstOrDefault(c => c.Y == home.Y + 1 && c.X == home.X + 1);
 
-        private bool CurrentlyAtEndColumn()
-        {
-            return current.X >= homeCell.X + 1;
-        }
-
-        private bool HomeCellIsNext()
-        {
-            return current.X == homeCell.X - 1 && current.Y == homeCell.Y;
+            currentIndex++;
         }
 
         public Boolean IsDone()
         {
-            return current == null || (current.X == homeCell.X + 1 && current.Y == homeCell.Y + 1);
+            return currentIndex > 7;
         }
 
         public Cell CurrentItem()
@@ -66,7 +59,7 @@ namespace GameOfLife
 
         public void SetHomeCell(Cell homeCell)
         {
-            this.homeCell = homeCell;
+            home = homeCell;
         }
     }
 }

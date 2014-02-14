@@ -46,5 +46,35 @@ namespace GameOfLife
             }
             return result;
         }
+
+        public void Generate(GameCriteria criteria)
+        {
+            var nextGeneration = new List<Cell>();
+
+            foreach (var cell in Cells)
+            {
+                cell.IsAlive = LiveOrDie(cell, criteria);
+                cell.Value = cell.IsAlive ? criteria.AliveValue : criteria.DeadValue;
+                nextGeneration.Add(cell);
+            }
+
+            Cells = nextGeneration;
+        }
+
+        private Boolean LiveOrDie(Cell cell, GameCriteria criteria)
+        {
+            var iterator = criteria.CellIterator;
+            var aliveNeighbors = 0;
+            iterator.Initialize(Cells);
+            iterator.SetHomeCell(cell);
+
+            for (iterator.First(); !iterator.IsDone(); iterator.Next())
+            {
+                if (iterator.CurrentItem() != null && iterator.CurrentItem().IsAlive)
+                    aliveNeighbors++;
+            }
+
+            return criteria.GameRules.Life(cell.IsAlive, aliveNeighbors);
+        }
     }
 }

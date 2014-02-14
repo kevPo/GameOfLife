@@ -48,7 +48,8 @@ namespace GameOfLife.Tests
                 new Cell { Y = 3, X = 6, Value = '.', IsAlive = false },
                 new Cell { Y = 3, X = 7, Value = '.', IsAlive = false }
             };
-            cellIterator = new CellIterator(cells);
+            cellIterator = new CellIterator();
+            cellIterator.Initialize(cells);
         }
 
         private void InitializeAndMove(Cell homeCell, Int32 moves)
@@ -96,14 +97,7 @@ namespace GameOfLife.Tests
         [Test]
         public void TestThatDoneIsCorrectlySet()
         {
-            InitializeAndMove(cells.FirstOrDefault(c => c.Y == 1 && c.X == 3), 7);
-            Assert.That(cellIterator.IsDone(), Is.EqualTo(true));
-        }
-
-        [Test]
-        public void TestCellThatDoesNotHaveEightNeighbors()
-        {
-            InitializeAndMove(cells.FirstOrDefault(c => c.X == 0 && c.Y == 0), 1);
+            InitializeAndMove(cells.FirstOrDefault(c => c.Y == 1 && c.X == 3), 8);
             Assert.That(cellIterator.IsDone(), Is.EqualTo(true));
         }
     }

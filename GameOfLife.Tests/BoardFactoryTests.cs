@@ -15,7 +15,7 @@ namespace GameOfLife.Tests
         [SetUp]
         public void SetUp()
         {
-            factory = new BoardFactory(new RowTranslator());
+            factory = new BoardFactory(new RowTranslator('*', '.'));
             dimensions = "4 8";
             var initialLayout = new List<String> {  
                 "........", 
