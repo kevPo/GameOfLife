@@ -1,6 +1,7 @@
 ﻿using System;
 using NUnit.Framework;
 using System.Linq;
+using System.Collections.Generic;
 
 namespace GameOfLife.Tests
 {
@@ -16,24 +17,28 @@ namespace GameOfLife.Tests
         {
             factory = new BoardFactory(new RowTranslator());
             dimensions = "4 8";
-            var initialLayout = new []{ "........", 
-                                        "....*...",
-                                        "...**...",
-                                        "........" };
-            board = factory.GetBoard(dimensions, initialLayout);
+            var initialLayout = new List<String> {  
+                "........", 
+                "....*...",
+                "...**...",
+                "........" };
+            var data = new GameData { Dimensions = dimensions, Rows = initialLayout };
+            board = factory.GetBoard(data);
         }
 
         [Test]
         public void TestBoardCreationWithEmptyDimensions()
         {
-            Exception exception = Assert.Throws<InvalidOperationException>(new TestDelegate(() => factory.GetBoard(String.Empty, Enumerable.Empty<String>())));
+            var data = new GameData { Dimensions = String.Empty, Rows = new List<String>() };
+            Exception exception = Assert.Throws<InvalidOperationException>(new TestDelegate(() => factory.GetBoard(data)));
             Assert.That(exception.Message, Is.EqualTo("Dimensions were not given in an acceptable format 'rows columns'"));
         }
 
         [Test]
         public void TestBoardCreationWithEmptyLayout()
         {
-            Exception exception = Assert.Throws<InvalidOperationException>(new TestDelegate(() => factory.GetBoard(dimensions, Enumerable.Empty<String>())));
+            var data = new GameData { Dimensions = dimensions, Rows = new List<String>() };
+            Exception exception = Assert.Throws<InvalidOperationException>(new TestDelegate(() => factory.GetBoard(data)));
             Assert.That(exception.Message, Is.EqualTo("Layout was undefined"));
         }
 

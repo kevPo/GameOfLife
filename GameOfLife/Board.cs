@@ -7,9 +7,13 @@ namespace GameOfLife
     public class Board
     {
         public List<Cell> Cells { get; private set; }
+        private Int32 rows;
+        private Int32 columns;
 
         public Board(Int32 rows, Int32 columns, IEnumerable<Cell> cells)
         {
+            this.rows = rows;
+            this.columns = columns;
             Cells = cells.ToList();
 
             if (rows < 0 || columns < 0)
@@ -29,6 +33,5 @@ namespace GameOfLife
             if (cell != null)
                 cell.IsAlive = alive;
         }
-
     }
 }

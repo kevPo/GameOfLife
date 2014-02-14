@@ -7,6 +7,7 @@ namespace GameOfLife
         public Int32 X { get; set; }
         public Int32 Y { get; set; }
         public Boolean IsAlive { get; set; }
+        public Char Value { get; set; }
 
         public override int GetHashCode()
         {

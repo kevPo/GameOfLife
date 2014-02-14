@@ -13,8 +13,9 @@ namespace GameOfLife
             rowTranslator = translator;
         }
 
-        public Board GetBoard(String dimensions, IEnumerable<String> dataInRows)
+        public Board GetBoard(GameData data)
         {
+            var dimensions = data.Dimensions;
             var rowsAndColumns = dimensions.Split(' ');
 
             try
@@ -22,7 +23,7 @@ namespace GameOfLife
                 var rows = Int32.Parse(rowsAndColumns[0]);
                 var columns = Int32.Parse(rowsAndColumns[1]);
 
-                var cells = BuildCells(dataInRows);
+                var cells = BuildCells(data.Rows);
 
                 return new Board(rows, columns, cells);
             }

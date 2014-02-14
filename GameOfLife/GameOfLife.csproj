@@ -42,6 +42,7 @@
     <Compile Include="Board.cs" />
     <Compile Include="BoardFactory.cs" />
     <Compile Include="GameData.cs" />
+    <Compile Include="ICellIterator.cs" />
     <Compile Include="InputTranslator.cs" />
     <Compile Include="IteratorException.cs" />
     <Compile Include="ITranslator.cs" />

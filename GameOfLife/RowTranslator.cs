@@ -15,7 +15,7 @@ namespace GameOfLife
             var cells = new List<Cell>();
 
             for (var i = 0; i < rawCells.Count(); i++)
-                cells.Add(new Cell { X = i, IsAlive = rawCells[i] == '*' });
+                cells.Add(new Cell { X = i, Value = rawCells[i], IsAlive = rawCells[i] == '*' });
 
             return cells;
         }
