@@ -58,6 +58,25 @@ namespace GameOfLife.Tests
         }
 
         [Test]
+        public void TestBeehiveGeneration()
+        {
+            var rawData = "5 6\n" +
+                          "......\n" +
+                          "..**..\n" +
+                          ".*..*.\n" +
+                          "..**..\n" +
+                          "......";
+            var game = BuildGame(rawData);
+
+            var nextGeneration = "......\n" +
+                                 "..**..\n" +
+                                 ".*..*.\n" +
+                                 "..**..\n" +
+                                 "......\n";
+            Assert.That(game.NextGeneration(), Is.EqualTo(nextGeneration));
+        }
+
+        [Test]
         public void TestBlinkerGeneration()
         {
             var rawData = "5 5\n" +
@@ -73,6 +92,28 @@ namespace GameOfLife.Tests
                                  ".***.\n" +
                                  ".....\n" +
                                  ".....\n";
+            Assert.That(game.NextGeneration(), Is.EqualTo(nextGeneration));
+        }
+
+        [Test]
+        public void TestToadGeneration()
+        {
+            var rawData = "6 6\n" +
+                          "......\n" +
+                          "......\n" +
+                          "..***.\n" +
+                          ".***..\n" +
+                          "......\n" +
+                          "......";
+            var game = BuildGame(rawData);
+
+            var nextGeneration = "......\n" +
+                                 "...*..\n" +
+                                 ".*..*.\n" +
+                                 ".*..*.\n" +
+                                 "..*...\n" +
+                                 "......\n";
+            
             Assert.That(game.NextGeneration(), Is.EqualTo(nextGeneration));
         }
     }
