@@ -23,6 +23,7 @@ namespace GameOfLife
         public String NextGeneration()
         {
             board.Generate(criteria);
+
             return board.ToString();
         }
 

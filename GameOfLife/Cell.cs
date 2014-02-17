@@ -9,7 +9,7 @@ namespace GameOfLife
         public Boolean IsAlive { get; set; }
         public Char Value { get; set; }
 
-        public override int GetHashCode()
+        public override Int32 GetHashCode()
         {
             return this.GetHashCode();
         }
@@ -19,7 +19,7 @@ namespace GameOfLife
             return new Cell { X = this.X, Y = this.Y, IsAlive = this.IsAlive, Value = this.Value };
         }
 
-        public override bool Equals(object other)
+        public override Boolean Equals(object other)
         {
             if (!(other.GetType() == typeof(Cell)))
                 return false;

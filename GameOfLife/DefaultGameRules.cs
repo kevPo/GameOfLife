@@ -13,6 +13,7 @@ namespace GameOfLife
 
                 return true;
             }
+
             return CanBeRevived(aliveNeighbors);
         }
 
