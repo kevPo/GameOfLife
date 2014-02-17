@@ -53,12 +53,20 @@ namespace GameOfLife
 
             foreach (var cell in Cells)
             {
-                cell.IsAlive = LiveOrDie(cell, criteria);
-                cell.Value = cell.IsAlive ? criteria.AliveValue : criteria.DeadValue;
-                nextGeneration.Add(cell);
+                var nextGenerationCell = GetNextGenerationFor(cell, criteria);
+                nextGeneration.Add(nextGenerationCell);
             }
 
             Cells = nextGeneration;
+        }
+
+        private Cell GetNextGenerationFor(Cell cell, GameCriteria criteria)
+        {
+            var nextGenerationCell = cell.Clone();
+            nextGenerationCell.IsAlive = LiveOrDie(nextGenerationCell, criteria);
+            nextGenerationCell.Value = nextGenerationCell.IsAlive ? criteria.AliveValue : criteria.DeadValue;
+            
+            return nextGenerationCell;
         }
 
         private Boolean LiveOrDie(Cell cell, GameCriteria criteria)

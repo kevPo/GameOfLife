@@ -14,6 +14,11 @@ namespace GameOfLife
             return this.GetHashCode();
         }
 
+        public Cell Clone()
+        {
+            return new Cell { X = this.X, Y = this.Y, IsAlive = this.IsAlive, Value = this.Value };
+        }
+
         public override bool Equals(object other)
         {
             if (!(other.GetType() == typeof(Cell)))
