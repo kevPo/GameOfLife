@@ -18,7 +18,6 @@ namespace GameOfLife
 
             if (rows < 0 || columns < 0)
                 throw new InvalidOperationException("Negative values are not acceptable");
-
         }
 
         public Cell GetCellAt(Int32 x, Int32 y)
@@ -64,14 +63,13 @@ namespace GameOfLife
 
         private Cell GetNextGenerationFor(Cell cell, GameCriteria criteria)
         {
-            var nextGenerationCell = cell.Clone();
-            nextGenerationCell.IsAlive = LiveOrDie(nextGenerationCell, criteria);
-            nextGenerationCell.Value = nextGenerationCell.IsAlive ? criteria.AliveValue : criteria.DeadValue;
-            
-            return nextGenerationCell;
+            var nextGenerationIsAlive = DetermineNextGenerationLifeStatusFor(cell, criteria);
+            var nextGenerationValue = nextGenerationIsAlive ? criteria.AliveValue : criteria.DeadValue;
+
+            return new Cell { X = cell.X, Y = cell.Y, IsAlive = nextGenerationIsAlive, Value = nextGenerationValue };
         }
 
-        private Boolean LiveOrDie(Cell cell, GameCriteria criteria)
+        private Boolean DetermineNextGenerationLifeStatusFor(Cell cell, GameCriteria criteria)
         {
             var iterator = criteria.CellIterator;
             var aliveNeighbors = 0;
@@ -84,7 +82,7 @@ namespace GameOfLife
                     aliveNeighbors++;
             }
 
-            return criteria.GameRules.Life(cell.IsAlive, aliveNeighbors);
+            return criteria.GameRules.IsLifeGrantedFor(cell.IsAlive, aliveNeighbors);
         }
     }
 }

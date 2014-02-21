@@ -6,7 +6,6 @@ namespace GameOfLife.Tests
     [TestFixture]
     public class GameOfLifeTests
     {
-
         private GameOfLife BuildGame(String rawData)
         {
             var inputTranslator = new InputTranslator();
@@ -21,7 +20,6 @@ namespace GameOfLife.Tests
             
             return new GameOfLife(rawData, criteria, inputTranslator, boardFactory);
         }
-
 
         [Test]
         public void TestThatBoardIsCreated()

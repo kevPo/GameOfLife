@@ -36,7 +36,8 @@ namespace GameOfLife.Tests
         [Test]
         public void TestBoardCreationWithNegatives()
         {
-            Exception exception = Assert.Throws<InvalidOperationException>(new TestDelegate(() => new Board(-1, -1, Enumerable.Empty<Cell>())));
+            Exception exception = Assert.Throws<InvalidOperationException>(
+                new TestDelegate(() => new Board(-1, -1, Enumerable.Empty<Cell>())));
             Assert.That(exception.Message, Is.EqualTo("Negative values are not acceptable"));
         }
 

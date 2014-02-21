@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace GameOfLife
 {
-    public class RowTranslator : ITranslator<List<Cell>>
+    public class RowTranslator : ITranslator<IEnumerable<Cell>>
     {
         private Char alive;
         private Char dead; 
@@ -15,7 +15,7 @@ namespace GameOfLife
             this.dead = dead;
         }
 
-        public List<Cell> Translate(String rowData)
+        public IEnumerable<Cell> Translate(String rowData)
         {
             var rawCells = rowData.ToCharArray();
             var cells = new List<Cell>();

@@ -6,9 +6,9 @@ namespace GameOfLife
 {
     public class BoardFactory
     {
-        private ITranslator<List<Cell>> rowTranslator;
+        private ITranslator<IEnumerable<Cell>> rowTranslator;
 
-        public BoardFactory(ITranslator<List<Cell>> translator)
+        public BoardFactory(ITranslator<IEnumerable<Cell>> translator)
         {
             rowTranslator = translator;
         }

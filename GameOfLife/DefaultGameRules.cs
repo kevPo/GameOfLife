@@ -4,17 +4,12 @@ namespace GameOfLife
 {
     public class DefaultGameRules : IGameRules
     {
-        public Boolean Life(Boolean cellIsAlive, Int32 aliveNeighbors)
+        public Boolean IsLifeGrantedFor(Boolean cellIsAlive, Int32 aliveNeighbors)
         {
             if (cellIsAlive)
-            {
-                if (Underpopulated(aliveNeighbors) || Overpopulated(aliveNeighbors))
-                    return false;
+                return !(Underpopulated(aliveNeighbors) || Overpopulated(aliveNeighbors));
 
-                return true;
-            }
-
-            return CanBeRevived(aliveNeighbors);
+            return CanCellBeRevived(aliveNeighbors);
         }
 
         private Boolean Underpopulated(Int32 aliveNeighbors)
@@ -27,7 +22,7 @@ namespace GameOfLife
             return aliveNeighbors > 3;
         }
 
-        private Boolean CanBeRevived(Int32 aliveNeighbors)
+        private Boolean CanCellBeRevived(Int32 aliveNeighbors)
         {
             return aliveNeighbors == 3;
         }

@@ -7,7 +7,7 @@ namespace GameOfLife.Tests
     [TestFixture]
     public class RowTranslatorTests
     {
-        RowTranslator translator;
+        private RowTranslator translator;
 
         [SetUp]
         public void SetUp()
@@ -19,14 +19,14 @@ namespace GameOfLife.Tests
         public void TestCorrectNumberOfCellsPopulated()
         {
             var cells = translator.Translate("....*..");
-            Assert.That(cells.Count, Is.EqualTo(7));
+            Assert.That(cells.ToList().Count, Is.EqualTo(7));
         }
 
         [Test]
         public void TestCellIsGivenCorrectXAndYValue()
         {
             var cells = translator.Translate("..*.");
-            var cell = cells[0];
+            var cell = cells.ToList()[0];
             Assert.That(cell.X, Is.EqualTo(0));
             Assert.That(cell.Y, Is.EqualTo(0));
         }

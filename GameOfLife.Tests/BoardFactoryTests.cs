@@ -1,16 +1,16 @@
 ﻿using System;
-using NUnit.Framework;
-using System.Linq;
 using System.Collections.Generic;
+using System.Linq;
+using NUnit.Framework;
 
 namespace GameOfLife.Tests
 {
     [TestFixture]
     public class BoardFactoryTests
     {
-        BoardFactory factory;
-        String dimensions;
-        Board board;
+        private BoardFactory factory;
+        private String dimensions;
+        private Board board;
 
         [SetUp]
         public void SetUp()
@@ -61,6 +61,5 @@ namespace GameOfLife.Tests
             var deadCell = board.Cells.FirstOrDefault(c => c.Y == 0 && c.X == 0);
             Assert.That(deadCell.IsAlive, Is.EqualTo(false));
         }
-
     }
 }

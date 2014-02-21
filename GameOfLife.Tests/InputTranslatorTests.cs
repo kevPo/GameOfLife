@@ -6,8 +6,8 @@ namespace GameOfLife.Tests
     [TestFixture]
     public class InputTranslatorTests
     {
-        InputTranslator translator;
-        String data;
+        private InputTranslator translator;
+        private String data;
 
         [SetUp]
         public void SetUp()
@@ -22,7 +22,8 @@ namespace GameOfLife.Tests
         [Test]
         public void TestTranslateEmptyInput()
         {
-            Exception exception = Assert.Throws<TranslationException>(new TestDelegate(() => translator.Translate(String.Empty)));
+            Exception exception = Assert.Throws<TranslationException>(
+                new TestDelegate(() => translator.Translate(String.Empty)));
             Assert.That(exception.Message, Is.EqualTo("Invalid game input"));
         }
 

@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 namespace GameOfLife
 {
     public class GameOfLife
@@ -8,7 +7,7 @@ namespace GameOfLife
         private Board board;
 
         public GameOfLife(String gameInput, GameCriteria criteria, 
-            ITranslator<GameData> translator, BoardFactory boardFactory)
+                          ITranslator<GameData> translator, BoardFactory boardFactory)
         {
             this.criteria = criteria;
             var gameData = translator.Translate(gameInput);
@@ -26,6 +25,5 @@ namespace GameOfLife
 
             return board.ToString();
         }
-
     }
 }

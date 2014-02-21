@@ -1,5 +1,4 @@
-﻿
-namespace GameOfLife
+﻿namespace GameOfLife
 {
     public interface ICellIterator : IIterator<Cell>
     {

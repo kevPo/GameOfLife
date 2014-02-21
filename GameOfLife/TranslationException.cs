@@ -4,9 +4,7 @@ namespace GameOfLife
 {
     public class TranslationException : Exception
     {
-        public TranslationException(String message)
-            : base(message)
-        {
-        }
+        public TranslationException(String message) : base(message)
+        {}
     }
 }

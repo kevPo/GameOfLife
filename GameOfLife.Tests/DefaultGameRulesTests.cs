@@ -6,7 +6,7 @@ namespace GameOfLife.Tests
     [TestFixture]
     public class DefaultGameRulesTests
     {
-        IGameRules rules;
+        private IGameRules rules;
 
         [SetUp]
         public void SetUp()
@@ -17,31 +17,31 @@ namespace GameOfLife.Tests
         [Test]
         public void TestCellAliveUnderPopulation()
         {
-            Assert.That(rules.Life(true, 1), Is.EqualTo(false));
+            Assert.That(rules.IsLifeGrantedFor(true, 1), Is.EqualTo(false));
         }
 
         [Test]
         public void TestCellAliveOverPopulation()
         {
-            Assert.That(rules.Life(true, 7), Is.EqualTo(false));
+            Assert.That(rules.IsLifeGrantedFor(true, 7), Is.EqualTo(false));
         }
 
         [Test]
         public void TestAliveStaysAlive()
         {
-            Assert.That(rules.Life(true, 2), Is.EqualTo(true));
+            Assert.That(rules.IsLifeGrantedFor(true, 2), Is.EqualTo(true));
         }
 
         [Test]
         public void TestDeadBecomesAlive()
         {
-            Assert.That(rules.Life(false, 3), Is.EqualTo(true));
+            Assert.That(rules.IsLifeGrantedFor(false, 3), Is.EqualTo(true));
         }
 
         [Test]
         public void TestDeadStaysDead()
         {
-            Assert.That(rules.Life(false, 2), Is.EqualTo(false));
+            Assert.That(rules.IsLifeGrantedFor(false, 2), Is.EqualTo(false));
         }
     }
 }

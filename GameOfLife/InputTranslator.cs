@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 
 namespace GameOfLife
@@ -13,10 +12,8 @@ namespace GameOfLife
 
             var lines = data.Split('\n');
             var dimensions = lines[0];
-            var rows = new List<String>();
-
-            for (var i = 1; i < lines.Count(); i++)
-                rows.Add(lines[i]);
+            var rows = lines.ToList();
+            rows.RemoveAt(0);
 
             return new GameData { Dimensions = dimensions, Rows = rows };
         }
