@@ -114,5 +114,32 @@ namespace GameOfLife.Tests
             
             Assert.That(game.NextGeneration(), Is.EqualTo(nextGeneration));
         }
+
+        [Test]
+        public void TestBlinkerGenerationForTwoGenerations()
+        {
+            var rawData = "5 5\n" +
+                          ".....\n" +
+                          "..*..\n" +
+                          "..*..\n" +
+                          "..*..\n" +
+                          ".....";
+            var game = BuildGame(rawData);
+
+            var expectedSecondGeneration = ".....\n" +
+                                           ".....\n" +
+                                           ".***.\n" +
+                                           ".....\n" +
+                                           ".....\n";
+
+            var expectedThirdGeneration = ".....\n" +
+                                          "..*..\n" +
+                                          "..*..\n" +
+                                          "..*..\n" +
+                                          ".....\n";
+
+            Assert.That(game.NextGeneration(), Is.EqualTo(expectedSecondGeneration));
+            Assert.That(game.NextGeneration(), Is.EqualTo(expectedThirdGeneration));
+        }
     }
 }
